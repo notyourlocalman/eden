@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Somewhere in this bullshit country, 2026.</title>
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Sacramento&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#1c5bc4;--navy:#274a86;--yel:#f7ee2a;--peach:#f2a36b;--ink:#1b2b4b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--navy);color:#eaf0ff;font:18px/1.65 'Special Elite','Courier New',monospace;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.12;mix-blend-mode:multiply;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.6'/></svg>")}
+.ttl{font-family:'Reenie Beanie','Comic Sans MS',cursive;color:var(--yel);text-transform:uppercase;line-height:.82;margin:0;text-shadow:2px 3px 0 #0003}
+section{position:relative;min-height:100vh;padding:10vh 6vw;display:flex;flex-direction:column;align-items:center}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+button:focus-visible,.env:focus-visible,[tabindex]:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#bar{position:fixed;left:0;top:0;height:4px;width:0;background:var(--yel);z-index:60}
+#snd{position:fixed;right:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:60;background:#0006;color:var(--yel);padding:.4rem .8rem;border-radius:20px;font-size:.8rem}
+
+#c{background:linear-gradient(180deg,#0d3fa0 0%,#1c5bc4 45%,#3f80e0 100%);justify-content:center;text-align:center}
+#c h1{font-size:clamp(4.2rem,18vw,11rem);transform:rotate(-4deg)}
+#c h1 span{display:block}#c h1 span:nth-child(2){transform:translateX(-.35em)}#c h1 span:nth-child(3){font-size:1.25em;transform:translateX(.6em) rotate(3deg)}
+#c p{margin:2rem 0 1.6rem;max-width:32ch;color:#e3edff}
+.go{background:var(--yel);color:var(--sky);padding:.7rem 2.2rem;font-size:1.05rem;letter-spacing:.03em}
+
+#y{justify-content:center;text-align:center;background:var(--navy)}
+#y div{font-family:'Sacramento',cursive;color:var(--yel);font-size:clamp(2.3rem,7.5vw,4.6rem);line-height:1.2;min-height:2.5em}
+#y i{display:inline-block;width:2px;height:1em;background:var(--yel);margin-left:4px;vertical-align:middle;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+
+#t{background:#16305a;min-height:210vh;align-items:center}
+#t h2{font-size:clamp(2.6rem,8vw,5rem)}
+#t p{max-width:36ch;opacity:.75;margin:.6rem 0 0;text-align:center}
+#tbl{position:relative;width:100%;max-width:1100px;flex:1;margin-top:2rem}
+.pol{position:absolute;width:min(36vw,200px);touch-action:none;perspective:900px;cursor:grab;transform:rotate(var(--r))}
+.pol .in{position:relative;transition:transform .6s;transform-style:preserve-3d}
+.pol.fl .in{transform:rotateY(180deg)}
+.pol .fr,.pol .bk{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fr{background:#faf8f0;padding:9px 9px 0;box-shadow:0 8px 20px #0007;color:var(--ink)}
+.fr img{width:100%;height:auto;display:block;pointer-events:none;filter:sepia(.08) saturate(1.06)}
+.fr b{display:block;font:400 1.45rem/1 'Reenie Beanie',cursive;padding:.5rem 0 .6rem}
+.bk{position:absolute;inset:0;transform:rotateY(180deg);background:#f0e9d4;color:#22356b;padding:14px;box-shadow:0 8px 20px #0007;display:flex;flex-direction:column;justify-content:space-between}
+.bk p{margin:0;font:1.35rem/1.2 'Reenie Beanie',cursive}
+.bk span{align-self:flex-end;font-size:.72rem;opacity:.7}
+
+#d{background:url(assets/img/n10.jpg) center/cover;justify-content:flex-end;overflow:hidden}
+#ov{position:absolute;inset:0;transition:background 1.2s;pointer-events:none}
+#d>*:not(#ov){position:relative}
+#d h2{position:absolute!important;top:10vh;left:6vw;font-size:clamp(2.6rem,8vw,5rem)}
+#hr{font:clamp(3rem,12vw,7rem)/1 'Reenie Beanie',cursive;color:#fff;text-shadow:0 2px 12px #0008}
+#dm{max-width:34ch;font-size:1.2rem;text-shadow:0 1px 8px #000a;min-height:3.4em}
+input[type=range]{width:100%;max-width:560px;accent-color:var(--yel);padding:0;margin:1rem 0 2rem;height:2rem}
+
+#p{background:#173a1d;align-items:center}
+#p h2{font-size:clamp(2.6rem,8vw,5rem)}
+#p p{max-width:38ch;opacity:.8;text-align:center;margin:.6rem 0 1.6rem}
+#grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%;max-width:520px}
+.pch{aspect-ratio:1;border-radius:50% 50% 47% 53%;background:radial-gradient(circle at 35% 30%,#ffe0b8,var(--peach) 55%,#cf5f3c);box-shadow:0 4px 8px #0005,inset 0 -4px 6px #0002;transition:transform .15s;position:relative}
+.pch::after{content:"";position:absolute;top:-6px;left:38%;width:13px;height:8px;background:#4b9a44;border-radius:0 100% 0 100%}
+.pch:active{transform:scale(.88)}
+.pch.pop{background:radial-gradient(circle at 35% 30%,#e8c39a,#c07f52 55%,#9c4a2c);transform:scale(.9);box-shadow:inset 0 3px 8px #0006}
+#reveal{margin-top:1.6rem;min-height:5em;max-width:32ch;text-align:center;font:clamp(1.4rem,4.5vw,2rem)/1.15 'Reenie Beanie',cursive;color:var(--yel);transition:opacity .3s}
+#pct{margin-top:.6rem;font-size:.85rem;opacity:.7}
+.again{margin-top:1.2rem;border:1.5px solid var(--yel);color:var(--yel);padding:.5rem 1.2rem;border-radius:20px;font-size:.85rem}
+
+#l{background:var(--sky);text-align:center;align-items:center}
+#l h2{font-size:clamp(2.6rem,8vw,5rem)}
+#l p.hint{opacity:.85;max-width:32ch;margin:0 0 1.2rem}
+.env{position:relative;width:min(88vw,360px);height:220px;margin:.5rem auto;background:#e9d9b0;box-shadow:0 10px 25px #0006;perspective:800px}
+.env::before{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49%,#d5c08a 50%) left/50% 100% no-repeat,linear-gradient(to top left,transparent 49%,#d5c08a 50%) right/50% 100% no-repeat}
+.flap{position:absolute;top:0;left:0;width:100%;height:60%;background:#dcc891;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s}
+.env.o .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:60%;width:54px;height:54px;margin:-27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d24a4a,#8b1f27);color:#fce;font-size:1.6rem;line-height:54px;box-shadow:0 3px 6px #0006;transition:opacity .4s;animation:pu 1.6s infinite;pointer-events:none}
+@keyframes pu{50%{transform:scale(1.12)}}
+.env.o .seal{opacity:0;animation:none}
+#pa{width:min(92vw,520px);max-height:0;overflow:hidden;background:#f6f1e1;color:#1d3268;text-align:left;transition:max-height 1.8s ease;box-shadow:0 10px 30px #0006}
+#pa.o{max-height:6000px;overflow-y:auto}
+#pt{padding:1.6rem;white-space:pre-wrap;font-size:1.05rem;min-height:14rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<audio id="au" loop preload="auto"><source src="assets/song.mp3" type="audio/mpeg"></audio>
+<div id="bar"></div><button id="snd" aria-pressed="false">music: off</button>
+
+<section id="c"><h1 class="ttl"><span>Call me</span><span>by your</span><span>name</span></h1>
+<p>A small page, made for one person only.</p>
+<button class="go" id="go">Begin</button></section>
+
+<section id="y"><div id="ty"></div></section>
+
+<section id="t"><h2 class="ttl">Scattered on the table</h2>
+<p>Drag the photos around. Tap one to flip it over.</p>
+<div id="tbl"></div></section>
+
+<section id="d"><div id="ov"></div><h2 class="ttl">Through the day</h2>
+<div id="hr">07.00</div><div id="dm"></div>
+<input type="range" id="sl" min="6" max="23" step=".25" value="7" aria-label="Hour"></section>
+
+<section id="p"><h2 class="ttl">Pop the peaches</h2>
+<p>Tap each one to pop it. Every peach holds a small note for you.</p>
+<div id="grid"></div><div id="reveal"></div><div id="pct">0 / 20 popped</div>
+<button class="again" id="again">Pop them again</button></section>
+
+<section id="l"><h2 class="ttl">A letter for you</h2>
+<p class="hint">Tap the envelope to open it. Tap it again to seal it back up and read it once more.</p>
+<div class="env" id="env" role="button" tabindex="0" aria-label="Open the letter"><div class="flap"></div><div class="seal">♥</div></div>
+<div id="pa"><div id="pt"></div></div></section>
+
+<script>
+const I={n3:"assets/img/n3.jpg",n4:"assets/img/n4.jpg",n5:"assets/img/n5.jpg",n9:"assets/img/n9.jpg",n10:"assets/img/n10.jpg",n11:"assets/img/n11.jpg",a1:"assets/img/a1.jpg",a2:"assets/img/a2.jpg",a3:"assets/img/a3.jpg",a4:"assets/img/a4.jpg",a5:"assets/img/a5.jpg"};
+const $=s=>document.querySelector(s);
+addEventListener('scroll',()=>{$('#bar').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%'});
+
+let typed=0;const ty=()=>{if(typed++)return;const t='Somewhere in this bullshit country, 2026.';let i=0;const k=()=>{$('#ty').innerHTML=t.slice(0,i)+'<i></i>';if(i++<t.length)setTimeout(k,95)};k()};
+new IntersectionObserver(e=>e[0].isIntersecting&&ty(),{threshold:.6}).observe($('#y'));
+$('#go').onclick=()=>{play();$('#y').scrollIntoView({behavior:'smooth'})};
+
+const P=[
+ ['n3','Side by side','Sharing one song, saying nothing at all.'],
+ ['n4','Just your hand','I could hold onto this moment forever.'],
+ ['n5','That evening by the water','The sky went gold and so did everything else.'],
+ ['n9','Close, quiet','No caption needed for this one.'],
+ ['n10','Under the trees','We sat here until the light disappeared.'],
+ ['n11','City lights on the water','Late nights always felt shorter with you.'],
+ ['a1','The broody one','You always say he\u2019s your favorite.'],
+ ['a2','Your favorite ship','Even the river approves.'],
+ ['a3','Soft mornings','The kind of scene you\u2019d replay on purpose.'],
+ ['a4','Summer daydream','Little moments, big feelings.'],
+ ['a5','Snack time debate','Pocky or cigarette \u2014 some arguments never end.']
+];
+const T=$('#tbl');let z=10;const cols=3,rows=Math.ceil(P.length/cols);
+P.forEach(([n,c,d],i)=>{const e=document.createElement('div');e.className='pol';
+const row=Math.floor(i/cols),col=i%cols;
+e.style.cssText=`--r:${(Math.random()*14-7).toFixed(1)}deg;left:${2+col*33+Math.random()*4}%;top:${3+row*(94/rows)+Math.random()*3}%`;
+e.innerHTML=`<div class="in"><div class="fr"><img src="${I[n]}" alt="${c}"><b>${c}</b></div><div class="bk"><p>${d}</p><span>flip back</span></div></div>`;
+let sx,sy,ox,oy,mv,dr;
+e.addEventListener('pointerdown',ev=>{e.style.zIndex=++z;sx=ev.clientX;sy=ev.clientY;ox=e.offsetLeft;oy=e.offsetTop;mv=0;dr=1;e.setPointerCapture(ev.pointerId);e.style.cursor='grabbing'});
+e.addEventListener('pointermove',ev=>{if(!dr)return;const dx=ev.clientX-sx,dy=ev.clientY-sy;if(Math.hypot(dx,dy)>6)mv=1;if(mv){e.style.left=ox+dx+'px';e.style.top=oy+dy+'px'}});
+e.addEventListener('pointerup',()=>{if(!dr)return;dr=0;e.style.cursor='grab';if(!mv)e.classList.toggle('fl')});
+T.appendChild(e)});
+
+const stops=[[6,"#ff9a5a55","Dawn. The air is still cool, and you're not awake yet."],[9,"#fff0","Morning. Breakfast on the terrace, and your laugh over coffee."],[13,"#fff6b022","Midday. Too hot for anything but the water."],[17,"#ff8a3d55","Afternoon. Everything turns gold, you included."],[19.5,"#7a3d8a99","Dusk. We sit still, and that's enough."],[21.5,"#0b1a4acc","Night. Crickets, quiet, and no place I'd rather be."]];
+const sl=$('#sl');function tm(){const v=+sl.value;let s=stops[0];stops.forEach(x=>{if(v>=x[0])s=x});$('#ov').style.background=s[1];$('#dm').textContent=s[2];const h=Math.floor(v),m=Math.round((v-h)*60);$('#hr').textContent=String(h).padStart(2,'0')+'.'+String(m).padStart(2,'0')}
+sl.oninput=tm;tm();
+
+const NOTES=["I miss you for no reason :3","I hope you\u2019re always having a great day, you deserve it.","I\u2019m so sorry the world has been an asshole to you. I hope I can make it a little softer.","Us against the world, always.","I\u2019m grateful for every ordinary day I get to spend with you.","I never get tired of you, I could have you around forever.","You\u2019ll never be a pressure to me, okay? I\u2019ll always be happy to have you around.","I find myself seeking you whenever I\u2019m tired. You feel like home somehow.","You make me feel better without even trying. I hope I can do the same for you.","I could listen to you yap for hours. Please yap more, bae.","I hope you know you can always come to me when things get heavy.","I like having you in my life, even on the most boring days.","Somehow, talking to you makes even a shitty day feel a little better.","You\u2019re one of those people I never get bored of talking to.","I don\u2019t need anything special. I just like having you here with me.","If you ever feel like the world is too much, come bother me instead :3","I genuinely love hearing about the little things happening in your day.","You make ordinary moments feel like something I want to remember.","I hope you\u2019re being gentle with yourself today. You deserve that too.","Just so you know, I\u2019m really, really glad I found you."];
+const grid=$('#grid');let order=[],popped=0;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function buildPeaches(){grid.innerHTML='';popped=0;$('#pct').textContent='0 / 20 popped';$('#reveal').textContent='';order=shuffle(NOTES.slice());
+order.forEach((msg,i)=>{const b=document.createElement('button');b.className='pch';b.setAttribute('aria-label','Pop peach '+(i+1));
+b.onclick=()=>{if(b.classList.contains('pop'))return;b.classList.add('pop');popped++;$('#pct').textContent=popped+' / 20 popped';
+$('#reveal').style.opacity=0;setTimeout(()=>{$('#reveal').textContent=msg;$('#reveal').style.opacity=1},150);
+if(popped===20)setTimeout(()=>$('#reveal').textContent="That's all of them \u2014 but I meant every word.",600)};
+grid.appendChild(b)})}
+buildPeaches();
+$('#again').onclick=buildPeaches;
+
+const LETTER=`Eden,
+
+Ada nama yang tidak cukup hanya diucapkan. Nama itu harus ditulis, diulang, disimpan, agar waktu tidak punya kuasa untuk menghapusnya. Aku anggap nama itu adala kamu. Eden, sering diartikan sebagai taman pertama, seperti fajar yang belum pernah tersentuh dosa, seperti tempat di mana segala yang indah dimulai. Maka aku berjanji padamu, dengan seluruh kesungguhan yang kupunya, akan kupastikan kamu abadi dalam tulisanku.
+
+Semua orang tahu bahwa aku tidak bisa menahan waktu. Aku tidak bisa menghentikan senja, mengunci musim agar tidak berganti, atau mencegah rambut memutih dan kulit menua. Aku tidak bisa memaksa dunia untuk berhenti sejenak dan tidak melupakan apa pun. Tapi aku bisa menulis. Dan di dalam tulisan, aku punya satu keinginan. Aku ingi membuatmu tetap hidup, Eden. Hidup yang dapat dirasakan di setiap kalimat dan kata yanga ada di tulisan ini.
+
+Jika suatu hari orang lupa, tulisanku akan mengingat. Jika dunia terlalu sibuk, halaman-halaman ini akan setia. Jika tubuhmu lelah dan ingatan mulai kabur, aku akan menjadi arsip bagi jiwamu. Aku akan menyimpanmu di tempat yang tidak bisa dijangkau usia, di ruang yang tidak mengenal perpisahan. Di dalam tulisanku, tidak ada musim gugur. Tidak ada daun yang jatuh tanpa alasan. Tidak ada selamat tinggal. Yang ada hanyalah kamu, Eden, yang terus mekar, yang terus bersinar, yang terus hidup.
+
+Aku menulis ini karena aku butuh tempat berlindung dari lupa. Dan aku memilih kata-kata sebagai rumahmu. Aku ingin setiap orang yang membaca tulisan ini tahu bahwa pernah ada seseorang bernama Eden yang begitu dihargai. Aku ingin mereka merasakan perasaan yang ada saat menuliskanmu.
+
+Akan aku pastikan di sini, kamu tidak pernah hilang. Di sini, kamu tidak pernah sendiri. Di sini, kamu abadi.
+
+Akan kupastikan kamu abadi dalam tulisanku, Eden. Selagi ada satu orang yang membaca, selagi ada satu hati yang menulis, selagi ada satu kata yang masih hidup, kamu akan terus ada di antara kalimat yang tidak akan pernah lupa`;
+const env=$('#env'),pa=$('#pa'),pt=$('#pt');let open=false,typing=false,timer=null;
+function openLetter(){open=true;typing=true;env.classList.add('o');pa.classList.add('o');let i=0;pt.textContent='';
+timer=setInterval(()=>{pt.textContent=LETTER.slice(0,++i);if(i>=LETTER.length){clearInterval(timer);typing=false}},32)}
+function closeLetter(){open=false;typing=false;clearInterval(timer);env.classList.remove('o');pa.classList.remove('o');pt.textContent=''}
+env.addEventListener('click',()=>{if(typing)return;open?closeLetter():openLetter()});
+env.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();if(typing)return;open?closeLetter():openLetter()}});
+
+const play=()=>{$('#au').play().then(lab).catch(lab)};const lab=()=>{$('#snd').textContent='music: '+($('#au').paused?'off':'on');$('#snd').setAttribute('aria-pressed',!$('#au').paused)};
+$('#au').volume=.7;
+$('#snd').onclick=()=>{$('#au').paused?play():($('#au').pause(),lab())};
+</script></body></html>
